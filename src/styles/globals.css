@@ -1,0 +1,64 @@
+:root {
+    --color1:#232323;/*0, 0%, 14% */
+    --color2:#2A2927;/*40, 4%, 16% */
+    --color3:#59503F;/*39, 17%, 30% */
+    --color4:#A69068;/*39, 26%, 53%*/
+    --color5:#d8c195;/*39, 46%, 72% */
+}
+
+body{
+    background-color: var(--color1);
+    color: var(--color5);
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+h1 {
+  font-size: 2.5em; 
+}
+h2 {
+  font-size: 1.875em; 
+}
+h3 {
+  font-size: 1.5em; 
+}
+h4 {
+  font-size: 1.25em; 
+}
+h5 {
+  font-size: 1.125em; 
+}
+h6 {
+  font-size: 1em; 
+}
+p {
+  font-size: 0.875em; 
+}
+
+@media screen and (min-width: 768px) {
+  h1{
+    font-size: 3.125em;
+  }
+  h2{
+    font-size: 2.5em;
+  }
+  h3{
+    font-size: 1.875em;
+  }
+  h4{
+    font-size: 1.5em;
+  }
+  h5{
+    font-size: 1.25em;
+  }
+  h6{
+    font-size: 1.125em;
+  }
+  p{
+    font-size: 1em;
+  }
+}
