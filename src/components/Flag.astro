@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  img: string;
+  resume: string;
+  info?: string;
+  screen?: string;
+  imgsize?: string;
+}
+
+const { title, img, resume, info, screen, imgsize } = Astro.props;
+---
+
+<div class={screen}>
+  <div class={info}>
+    <h1 class="c1 underline decoration-double text-center background">
+      {title}
+    </h1>
+    <h3 class="c1 text-center p2 background">{resume}</h3>
+  </div>
+  <img
+    src={img}
+    alt="perou coral drapeau"
+    class=`${imgsize} hover:blur-lg hover:opacity-75 object-cover`
+  />
+</div>

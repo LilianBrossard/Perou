@@ -1,4 +1,6 @@
 ---
+import "../styles/globals.css";
+import Footer from "../components/Footer.astro";
 interface Props {
   title: string;
 }
@@ -7,10 +9,14 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
+    <meta
+      name="keywords"
+      content="Perou, Minecraft, jeu vidéo, pays, exploration, aventure, Nation, Glory, Nation Glory, NationGlory, Coral, NationGlory coral, NationGlory Perou, coral, build, nation glory build, unesco, nation glory unesco"
+    />
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Presentation du plus beau pays" />
     <meta name="viewport" content="width=device-width" />
     <link
       rel="icon"
@@ -20,8 +26,9 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="overflow-x-hidden">
     <slot />
+    <Footer />
   </body>
 </html>
 <script>

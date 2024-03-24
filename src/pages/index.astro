@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import "../styles/globals.css";
+import Header from "../components/Header.astro";
+import Intro from "../components/Intro.astro";
+import Flag from "../components/Flag.astro";
+
 const hygraphEndpoint = import.meta.env.HYGRAPH_ENDPOINT;
 const response = await fetch(hygraphEndpoint, {
   method: "POST",
@@ -11,30 +14,63 @@ const response = await fetch(hygraphEndpoint, {
   body: JSON.stringify({
     query: `
         {
-  			headers(orderBy: publishedAt_ASC) {
-    		image {
-      			url
-      			width
-      			height
-    			}
-			title
-    		subTitle
-			}
-		}
-      `,
+  lores(orderBy: id_ASC) {
+    image {
+      height
+      width
+      url
+    }
+    resume
+    slug
+    title
+    textComplet
+  }
+}`,
   }),
 });
-const headersData = await response.json();
-const header = headersData.data.headers[0];
-// console.log(headers);
-// console.log(headers.data.headers[0].title);
+const loresData = await response.json();
+const lores = loresData.data.lores;
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Perou | NationGlory Coral">
   <main>
-    <div class="px-16 flex flex-row">
-      <h1>{header.title}</h1>
-      <h3>{header.subTitle}</h3>
+    <Intro />
+    <Header />
+    <div class="lg:flex lg:flex-row w-screen shadow-lg">
+      {
+        lores.slice(0, 3).map((lore: any) => (
+          <div>
+            <a href={`./lore/${lore.slug}`}>
+              <Flag
+                title={lore.title}
+                img={lore.image.url}
+                resume={lore.resume}
+                info="p-2 lg:p-8 flex flex-col items-center c4 absolute z-20 w-full lg:w-[32%]"
+                screen="h-screen"
+                imgsize="h-full"
+              />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex flex-col w-screen items-center pg:mx-1/6">
+      {
+        lores.slice(3).map((lore: any) => (
+          <div class="pb-8 shadow-lg">
+            <a href={`./lore/${lore.slug}`}>
+              <Flag
+                title={lore.title}
+                img={lore.image.url}
+                resume={lore.resume}
+                info="p-2 lg:p-8 flex flex-col items-center c4 absolute z-20 w-full lg:w-[1000px]"
+                screen="w-full"
+                imgsize="w-full h-fit"
+              />
+            </a>
+          </div>
+        ))
+      }
     </div>
   </main>
 </Layout>

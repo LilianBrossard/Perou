@@ -1,0 +1,78 @@
+---
+const hygraphEndpoint = import.meta.env.HYGRAPH_ENDPOINT;
+const response = await fetch(hygraphEndpoint, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        {
+  headers(orderBy: publishedAt_ASC) {
+    title
+    subTitle
+    logo {
+      height
+      url
+      width
+    }
+    image {
+      url
+      width
+      height
+    }
+  }
+}
+      `,
+  }),
+});
+const headersData = await response.json();
+const header = headersData.data.headers[0];
+---
+
+<div>
+  <img
+    src="/assets/blob1.svg"
+    alt="blob"
+    class="rellax absolute w-64 h-64 left-1/4 top-1/4 z-10 hidden 2xl:block"
+    data-rellax-speed="-3"
+  />
+  <img
+    src="/assets/blob2.svg"
+    alt="blob"
+    class="rellax absolute w-64 h-64 left-2/4 top-3/4"
+    data-rellax-speed="3"
+  />
+  <img
+    src="/assets/blob3.svg"
+    alt="blob"
+    class="rellax absolute w-64 h-64 left-2/3 top-1/6"
+    data-rellax-speed="-4"
+  />
+  <img
+    src="/assets/blob4.svg"
+    alt="blob"
+    class="rellax absolute w-64 h-64 left-3/4 top-1/4"
+    data-rellax-speed="-2"
+  />
+  <img
+    src="/assets/blob5.svg"
+    alt="blob"
+    class="rellax absolute w-64 h-64 left-1/10 top-3/4"
+    data-rellax-speed="2"
+  />
+  <div>
+    <img
+      src="/assets/scroll.svg"
+      alt="scroll down"
+      class="rellax w-12 absolute top-3/4 right-1/2"
+      data-rellax-speed="-3"
+    />
+    <img
+      src={header.image.url}
+      alt="banniere des geldenberg "
+      class="object-cover -z-10 min-h-screen min-w-screen"
+    />
+  </div>
+</div>

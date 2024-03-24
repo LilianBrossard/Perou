@@ -1,0 +1,85 @@
+---
+const hygraphEndpoint = import.meta.env.HYGRAPH_ENDPOINT;
+const response = await fetch(hygraphEndpoint, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        {
+  headers(orderBy: publishedAt_ASC) {
+    title
+    subTitle
+    logo {
+      height
+      url
+      width
+    }
+    image {
+      url
+      width
+      height
+    }
+  }
+}
+      `,
+  }),
+});
+const headersData = await response.json();
+const header = headersData.data.headers[0];
+// console.log(headers);
+// console.log(headers.data.headers[0].title);
+---
+
+<header class="flex flex-row justify-between w-screen items-center z-20">
+  <a href="/">
+    <div class="px-16 flex flex-row items-center lg:py-4 z-10">
+      <img src={header.logo.url} alt="logo" class="h-16 w-16" />
+      <div
+        class="flex flex-wrap flex-col lg:flex-row justify-around items-baseline"
+      >
+        <h1 class="lg:px-8 text-center">{header.title}</h1>
+        <h4 class="text-center">{header.subTitle}</h4>
+      </div>
+    </div>
+  </a>
+  <div class="lg:flex lg:flex-row lg:justify-around lg:p-8 flex-wrap hidden">
+    <a
+      href="mailto:lilian.brossard@gmail.com"
+      class="flex flex-row items-center mx-16"
+      ><img
+        src="/assets/mail.svg"
+        alt="tailwind logo"
+        title="tailwind logo"
+        class="w-8 h-8"
+      />lilian.brossard@gmail.com</a
+    >
+    <a
+      href="https://github.com/LilianBrossard"
+      class="flex flex-row items-center mx-16"
+      ><img
+        src="/assets/github.svg"
+        alt="github logo"
+        title="github logo"
+        class="w-8 h-8"
+      />github</a
+    >
+    <a
+      href="https://lilianbrossard.github.io/portfolio/"
+      class="flex flex-row items-center mx-16"
+      ><img
+        src="/assets/portfolio.svg"
+        alt="portfolio logo"
+        title="portfolio logo"
+        class="w-8 h-8"
+      />portfolio</a
+    >
+  </div>
+</header>
+<style>
+  header {
+    background-color: var(--color2);
+  }
+</style>

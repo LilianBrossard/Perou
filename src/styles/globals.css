@@ -8,7 +8,7 @@
 
 body{
     background-color: var(--color1);
-    color: var(--color5);
+    color: var(--color4);
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     margin: 0;
     padding: 0;
@@ -61,4 +61,29 @@ p {
   p{
     font-size: 1em;
   }
+}
+
+.c1{
+    color: var(--color1);
+}
+.bg1{
+    background-color: var(--color1);
+}
+.c4{
+    color: var(--color4);
+}
+.bg4{
+    background-color: var(--color4);
+}
+.c5{
+    color: var(--color5);
+}
+.bg5{
+    background-color: var(--color5);
+}
+
+.background{
+  background-color: #d8c19531;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
 }

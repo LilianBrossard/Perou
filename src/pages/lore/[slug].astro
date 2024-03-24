@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        {
+  lores(orderBy: publishedAt_ASC) {
+    image {
+      height
+      width
+      url
+    }
+    resume
+    slug
+    title
+    textComplet
+  }
+}`,
+    }),
+  });
+  const loresData = await response.json();
+
+  const paths = loresData.data.lores.map((lore) => ({
+    params: {
+      slug: lore.slug,
+    },
+    props: {
+      lore,
+    },
+  }));
+
+  return paths;
+}
+
+const lore = Astro.props.lore;
+---
+
+<Layout title=`Perou | ${lore.slug}`>
+  <Header />
+  <div>
+    <img
+      src="/assets/blob5.svg"
+      alt="blob"
+      class="rellax absolute w-64 h-64 left-1/6 top-2/6 -z-20 hidden lg:block"
+      data-rellax-speed="-4"
+    />
+    <img
+      src="/assets/blob4.svg"
+      alt="blob"
+      class="rellax absolute w-64 h-64 left-3/4 top-1/4 -z-20 hidden lg:block"
+      data-rellax-speed="-2"
+    />
+    <img
+      src="/assets/blob5.svg"
+      alt="blob"
+      class="rellax absolute w-64 h-64 left-20 top-1/2 -z-20 hidden lg:block"
+      data-rellax-speed="2"
+    />
+    <div class="mx-2 lg:mx-96 my-16">
+      <h1 class="c5 underline decoration-simple">{lore.title}</h1>
+      <h3>{lore.textComplet}</h3>
+    </div>
+  </div>
+</Layout>
