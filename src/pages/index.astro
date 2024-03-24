@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Intro from "../components/Intro.astro";
 import Flag from "../components/Flag.astro";
+import Pres from "../components/Pres.astro";
 
 const hygraphEndpoint = import.meta.env.HYGRAPH_ENDPOINT;
 const response = await fetch(hygraphEndpoint, {
@@ -33,39 +34,19 @@ const lores = loresData.data.lores;
 ---
 
 <Layout title="Perou | NationGlory Coral">
-  <main>
-    <Intro />
-    <Header />
-    <div class="lg:flex lg:flex-row w-screen shadow-lg">
+  <Intro />
+  <Header />
+  <main class="px-2 lg:px-12">
+    <Pres />
+    <div class="flex flex-col w-full items-center pg:mx-1/6 shadow-lg mt-36">
       {
-        lores.slice(0, 3).map((lore: any) => (
-          <div>
+        lores.map((lore: any) => (
+          <div class="mb-8 shadow-lg rounded-lg">
             <a href={`./lore/${lore.slug}`}>
               <Flag
                 title={lore.title}
                 img={lore.image.url}
                 resume={lore.resume}
-                info="p-2 lg:p-8 flex flex-col items-center c4 absolute z-20 w-full lg:w-[32%]"
-                screen="h-screen"
-                imgsize="h-full"
-              />
-            </a>
-          </div>
-        ))
-      }
-    </div>
-    <div class="flex flex-col w-screen items-center pg:mx-1/6">
-      {
-        lores.slice(3).map((lore: any) => (
-          <div class="pb-8 shadow-lg">
-            <a href={`./lore/${lore.slug}`}>
-              <Flag
-                title={lore.title}
-                img={lore.image.url}
-                resume={lore.resume}
-                info="p-2 lg:p-8 flex flex-col items-center c4 absolute z-20 w-full lg:w-[1000px]"
-                screen="w-full"
-                imgsize="w-full h-fit"
               />
             </a>
           </div>

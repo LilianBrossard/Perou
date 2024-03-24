@@ -82,8 +82,4 @@ p {
     background-color: var(--color5);
 }
 
-.background{
-  background-color: #d8c19531;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-}
+
