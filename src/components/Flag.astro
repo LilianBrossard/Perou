@@ -8,12 +8,16 @@ interface Props {
 const { title, img, resume } = Astro.props;
 ---
 
-<div class="w-full flex flex-row h-[600px]">
-  <div class="p-2 lg:p-8 flex flex-col items-center c4 w-1/3">
+<div class="w-full flex flex-col lg:flex-row max-h-[600px]">
+  <div class="p-2 lg:p-8 flex flex-col items-center c4 lg:w-1/3">
     <h1 class="c5 underline decoration-double text-center">
       {title}
     </h1>
     <h3 class="c4 text-center p-2">{resume}</h3>
   </div>
-  <img src={img} alt="perou coral drapeau" class="w-2/3 object-cover" />
+  <img
+    src={img}
+    alt="perou coral drapeau"
+    class="lg:w-2/3 object-cover rounded-lg"
+  />
 </div>
